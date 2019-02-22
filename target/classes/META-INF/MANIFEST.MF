@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Built-By: pierre_cb
 Build-Jdk: 10.0.2
 Implementation-Title: pizzaria-api
-Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Version: 1.1.0-SNAPSHOT
 Implementation-Vendor-Id: br.com.uds
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/pizzaria-api

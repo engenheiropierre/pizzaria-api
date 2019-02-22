@@ -1,0 +1,6 @@
+CREATE TABLE pizza(
+	pzza_id BIGINT(19) PRIMARY KEY AUTO_INCREMENT,
+	pzza_sabor_id BIGINT(19) NOT NULL,
+	pzza_tamanho VARCHAR(30) NOT NULL,
+	CONSTRAINT sabor_pizza_fk FOREIGN KEY (pzza_sabor_id) REFERENCES sabor(sbor_id) ON DELETE CASCADE 
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
