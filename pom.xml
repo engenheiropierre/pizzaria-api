@@ -13,7 +13,7 @@
 	
 	<groupId>br.com.uds</groupId>
 	<artifactId>pizzaria-api</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>pizzaria-api</name>
 
 	<properties>
