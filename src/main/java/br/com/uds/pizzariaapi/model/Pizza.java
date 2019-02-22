@@ -1,6 +1,8 @@
 package br.com.uds.pizzariaapi.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -27,6 +31,7 @@ public class Pizza implements Serializable {
 	private Long id;
 	private Sabor sabor;
 	private Tamanho tamanho;
+	private List<Personalizacao> personalizacoes = new ArrayList<Personalizacao>();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -56,6 +61,16 @@ public class Pizza implements Serializable {
 	}
 	public void setTamanho(Tamanho tamanho) {
 		this.tamanho = tamanho;
+	}
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "pizza_personalizacao", joinColumns = @JoinColumn(name = "pzps_pizza_id"),
+			inverseJoinColumns = @JoinColumn(name = "pzps_personalizacao_id"))
+	public List<Personalizacao> getPersonalizacoes() {
+		return personalizacoes;
+	}
+	public void setPersonalizacoes(List<Personalizacao> personalizacoes) {
+		this.personalizacoes = personalizacoes;
 	}
 	
 	@Override

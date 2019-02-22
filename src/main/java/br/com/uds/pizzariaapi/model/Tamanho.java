@@ -1,6 +1,7 @@
 package br.com.uds.pizzariaapi.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public enum Tamanho {
 
@@ -28,5 +29,28 @@ public enum Tamanho {
 
 	public int getTempoDePreparo() {
 		return tempoDePreparo;
+	}
+	
+	public BigDecimal calcularValorTotal(List<Personalizacao> personalizacoes) {
+		BigDecimal valorTotal = BigDecimal.ZERO;
+		if (personalizacoes != null && !personalizacoes.isEmpty()) 
+			valorTotal = personalizacoes.stream()
+							.map(Personalizacao::getValorAdicional)
+							.reduce(BigDecimal::add)
+							.orElse(BigDecimal.ZERO);
+		return valorTotal.add(this.getPreco());
+		}
+
+	public int calcularTempoDePreparo(List<Personalizacao> personalizacoes, Sabor sabor) {
+		int tempoTotal = 0;
+		if (personalizacoes != null && !personalizacoes.isEmpty())
+			tempoTotal = personalizacoes.stream()
+						.map(Personalizacao::getTempoDePreparoAdicional)
+						.reduce(Integer::sum)
+						.orElse(0);
+		if (sabor != null)
+			tempoTotal += sabor.getTempoPreparo();
+		
+		return this.getTempoDePreparo() + tempoTotal;
 	}
 }
