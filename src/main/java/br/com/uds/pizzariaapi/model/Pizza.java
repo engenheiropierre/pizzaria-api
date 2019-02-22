@@ -44,7 +44,7 @@ public class Pizza implements Serializable {
 	}
 	
 	@NotNull(message = "Favor selecionar um sabor!")
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = PFX + "sabor_id")
 	public Sabor getSabor() {
 		return sabor;
